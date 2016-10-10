@@ -1,0 +1,91 @@
+﻿@using System.Web.Optimization
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom client demo</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/demo.styles.css" rel="stylesheet" />
+    <style>
+        .custom_client_demo #responsecode {
+            margin-left: 10px;
+        }
+        .custom_client_demo .shown {
+            display:inline-block;
+        }
+        .custom_client_demo .hidden{
+            display:none;
+        }
+        .custom_client_demo #spinner {
+            display: block;
+            position:relative;
+            width: 32px;
+            height: 32px;
+            margin-left: 25px;
+            display: inline-block;
+        }
+        .custom_client_demo #fileupload {
+            display:inline-block;
+        }
+        .custom_client_demo pre {
+            outline: 1px solid #ccc; padding: 5px; margin: 5px; 
+            height: auto;
+            overflow: auto;
+            background-color: #eeeeee;
+            word-break: normal !important;
+            word-wrap: normal !important;
+            white-space: pre !important;
+            width: 100%;
+        }
+        .custom_client_demo .string { color: green; }
+        .custom_client_demo .number { color: darkorange; }
+        .custom_client_demo .boolean { color: blue; }
+        .custom_client_demo .null { color: magenta; }
+        .custom_client_demo .key { color: red; }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Custom client</h1>
+        <h2 class="lead">Upload files with plain Javascript</h2>
+        <br>
+
+        <div class="container custom_client_demo" id="container">
+            <blockquote>
+                <p>
+                    This demo shows how to upload a file without any client side plugin, just plain Javascript. You can process the Json response like you need it
+                    in your application. Note: This demo is not intended to be cross browser compatible. Please take care, especially when you need to support older browsers. 
+                    No need to do any configuration server side. Client side Javascript file is located here: '~/Scripts/demos.other.customclient.js'.
+                </p>
+            </blockquote>
+            <br>
+
+            <!-- The file upload form used as target for the file upload widget -->
+            <form id="fileupload" action="/Backload/FileHandler" method="POST" enctype="multipart/form-data">
+                <input id="fileupload" type="file" name="files[]" multiple><img src="~/Content/loading.gif" class="hidden" id="spinner" /><br />
+                <progress id="progressbar" class="hidden" max="100"></progress>
+            </form>
+            <p>&nbsp;</p>
+
+            <h4>Response <span id="responsecode"></span></h4>
+            <pre id="responseText">
+            </pre>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+
+    <!-- The demo application script -->
+    <script src="~/Scripts/demos.other.customclient.js"></script>
+</body>
+</html>
